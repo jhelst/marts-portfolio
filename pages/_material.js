@@ -1,8 +1,9 @@
 import * as React from 'react'
 import Head from 'next/head'
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import styled from 'styled-components'
-import { Col, Container, Image, Row } from 'react-bootstrap'
+import { GridList, GridListTile, Paper, Container, Box, useMediaQuery, GridListTileBar } from '@material-ui/core';
+import { useStyles } from '../util/styles';
 
 const mq = {
   'mobileMax': '(max-width: 414px)',
@@ -122,73 +123,55 @@ const Nav = styled.nav`
   )
 }
 
-const Content = styled('div')`
-margin-left: -15px;
-margin-right: -15px;
-`
-
-const HeroImage = styled('img')`
-width: 100%;
-height: 100%;
-`
-
-const StillLifeImage = styled('img')`
-height: 100%;
-width: 100%;
-`
-
-const PortraitImage = styled('img')`
-height: 100%;
-width: 100%;
-`
-
-const FlexImage = styled(Image)`
-display: flex;
-`
-
-const HomepageContainer = styled(Container)`
-margin-top: 48px;
-`
-
 export default function Home() {
+  const classes = useStyles();
+  const isMobile = useMediaQuery('(max-width: 767px)')
   return (
     <>
       <Head>
         <title>Marts Portfolio</title>
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet"/> 
-        <script src="https://unpkg.com/react/umd/react.production.min.js" crossOrigin="true"></script>
-        <script
-          src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
-          crossOrigin="true"></script>
-        <script
-        src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-        crossOrigin="true"></script>
       </Head>
       <Navigation/>
-      <Content>
-      <Container fluid>
-        <HeroImage src="images/1.jpeg"/>
-      </Container>
-      <HomepageContainer fluid>
-      <Row>
-        <Col xs={1}/>
-        <Col><StillLifeImage src="images/violin1.jpg"/><h2>Still Life</h2></Col>
-        <Col><PortraitImage src="images/portrait1.jpeg"/><h2>Portrait</h2></Col>
-        <Col xs={1}/>
-      </Row>
-      </HomepageContainer>
-      <HomepageContainer fluid>
-      <Row>
-        <Col xs={1}/>
-        <Col xs={10}>
-          <Image src="images/snow.jpeg"/>
-          <h2>Landscape</h2>
-        </Col> 
-        <Col xs={1}/>
-      </Row>
-      </HomepageContainer>
-      </Content>
+      {/* <Container className={classes.hero}>
+        <h1>Martina - Photographer</h1>
+        <p>Focus on life</p>
+      </Container> */}
+      <div className={classes.root}>
+      <GridList cellHeight={isMobile ? 400 : 800} cols={1} style={{marginBottom: isMobile ? '40px' : '80px'}}>
+          <GridListTile key="hero" cols={1} className={classes.gridTile}>
+            <img src="/images/1.jpeg" className={classes.imageFit}/>
+          </GridListTile>
+      </GridList>
+      <GridList cellHeight={isMobile ? 200 : 400} cols={isMobile ? 1 : 2} spacing={isMobile ? 16 : 64} style={{padding: isMobile ? '0 16px' : '0 48px', marginBottom: isMobile ? '40px' : '80px'}}>
+          <GridListTile key="still-life" cols={1} rows={1.5} className={classes.gridTile} style={{marginBottom: isMobile ? '32px' : '80px'}}>
+            <img src="/images/violin1.jpg" className={classes.imageFit}/>
+            <GridListTileBar title="Still Life" style={{ backgroundColor: 'rgba(43, 43, 43, 0.5)', fontSize: '16px', fontFamily: 'Limelight'}}/>
+          </GridListTile>
+          <GridListTile key="portrait" cols={1} rows={2} className={classes.gridTile}>
+            <img src="/images/portrait1.jpeg" className={classes.imageFit}/>
+            <GridListTileBar title="Portrait" style={{ backgroundColor: 'rgba(43, 43, 43, 0.5)', fontSize: '16px', fontFamily: 'Limelight'}}/>
+          </GridListTile>
+      </GridList>
+      <GridList cellHeight={isMobile ? 300 : 700} cols={1} style={{marginBottom: isMobile ? '40px' : '80px'}}>
+          <GridListTile key="landscape" cols={1} className={classes.gridTile}>
+            <img src="/images/snow.jpeg" className={classes.imageFit}/>
+            <GridListTileBar title="Landscape" style={{ backgroundColor: 'rgba(43, 43, 43, 0.5)', fontSize: '16px', fontFamily: 'Limelight'}}/>
+          </GridListTile>
+      </GridList>
+      <GridList cellHeight={isMobile ? 300 : 700} cols={2} style={{padding: isMobile ? '0 16px' : '0 48px', marginBottom: isMobile ? '40px' : '80px'}}>
+          <GridListTile key="landscape" cols={1} className={classes.gridTile}>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',height: '100%'}}>
+              <h1>About Martina</h1>
+              <p>fun words!</p>
+            </div>
+          </GridListTile>
+          <GridListTile key="landscape" cols={1} className={classes.gridTile}>
+            <img src="/images/marts.jpeg" className={classes.imageFit}/>
+          </GridListTile>
+      </GridList>
+      </div>
       <style jsx global>{`
         html,
         body {
