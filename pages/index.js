@@ -1,9 +1,9 @@
 import * as React from 'react'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Col, Container, Image, Row } from 'react-bootstrap'
-
+import { Box, useMediaQuery } from '@material-ui/core'
 const mq = {
   'mobileMax': '(max-width: 414px)',
   'tabletMin': '(min-width: 415px)',
@@ -20,11 +20,10 @@ const Nav = styled.nav`
   width: 100vw;
   left: 0;
   top: 24px;
-  padding: 0 32px;
   & .bg {
     position: fixed;
     left: 0;
-    padding: 24px;
+    padding: 20px;
     width: 370px;
     height: inherit;
     z-index: -1;
@@ -42,6 +41,8 @@ const Nav = styled.nav`
   }
   &.top ul {
     flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
   }
   @media ${mq.tabletMin} {
   padding: 0 40px;
@@ -63,7 +64,6 @@ const Nav = styled.nav`
     padding: 8px 0;
   }
   & a {
-  padding: 4px;
   color: #323232;
   text-shadow: 1px 1px 1px #393939ad;
   text-decoration: none;
@@ -74,7 +74,7 @@ const Nav = styled.nav`
   }
  `
 
- const Navigation = () => {
+const Navigation = () => {
 
   const [scrollDirection, setScrollDirection] = React.useState('top')
 
@@ -90,7 +90,7 @@ const Nav = styled.nav`
       }
       prevScrollY = window.scrollY
     }
-    if(window){
+    if (window) {
       window.addEventListener('scroll', handleScroll)
     }
 
@@ -101,8 +101,8 @@ const Nav = styled.nav`
 
   return (
     <Nav className={scrollDirection}>
-      <div style={{position: 'relative'}}>
-        <div className="bg"/>
+      <Container fluid style={{ position: 'relative' }}>
+        <div className="bg" />
         <ul>
           <li>
             <a href="/#top">Home</a>
@@ -117,77 +117,140 @@ const Nav = styled.nav`
             <a href="/#contact">Contact</a>
           </li>
         </ul>
-      </div>
+      </Container>
     </Nav>
   )
 }
 
 const Content = styled('div')`
-margin-left: -15px;
-margin-right: -15px;
+  margin-right: -15px;
+  margin-left: -15px;
+`
+
+
+const boxShadowStyle = css`
+cursor: pointer;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+&::hover {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+}
 `
 
 const HeroImage = styled('img')`
+${boxShadowStyle};
 width: 100%;
 height: 100%;
 `
 
 const StillLifeImage = styled('img')`
+${boxShadowStyle};
 height: 100%;
 width: 100%;
 `
+
 
 const PortraitImage = styled('img')`
+${boxShadowStyle};
 height: 100%;
 width: 100%;
+margin-top: 16px;
+@media (min-width: 1024px){
+  margin-top: 0;
+}
 `
 
-const FlexImage = styled(Image)`
-display: flex;
+const BoxShadowImage = styled(Image)`
+${boxShadowStyle};
 `
 
 const HomepageContainer = styled(Container)`
-margin-top: 48px;
+box-sizing: border-box;
+margin-top: 24px;
+@media (min-width: 1024px){
+  margin-top: 48px;
+} 
+`
+
+const ImageTitle = styled('h2')`
+text-align: center;
+margin-top: 6px;
+font-size: 16px;
+
+@media (min-width: 1024px){
+  font-size: 24px;
+}
+`
+
+const AboutBox = styled('div')`
+position: absolute;
+top: 70%; background-color: white; 
+width: 80%;
+left: 10%;
+padding: 8px;
+border-radius: 4px;
 `
 
 export default function Home() {
+  const isMobile = useMediaQuery('(max-width: 767px)')
   return (
     <>
       <Head>
         <title>Marts Portfolio</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet"/> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" />
         <script src="https://unpkg.com/react/umd/react.production.min.js" crossOrigin="true"></script>
         <script
           src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
           crossOrigin="true"></script>
         <script
-        src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-        crossOrigin="true"></script>
+          src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+          crossOrigin="true"></script>
       </Head>
-      <Navigation/>
+      <Navigation />
       <Content>
-      <Container fluid>
-        <HeroImage src="images/1.jpeg"/>
-      </Container>
-      <HomepageContainer fluid>
-      <Row>
-        <Col xs={1}/>
-        <Col><StillLifeImage src="images/violin1.jpg"/><h2>Still Life</h2></Col>
-        <Col><PortraitImage src="images/portrait1.jpeg"/><h2>Portrait</h2></Col>
-        <Col xs={1}/>
-      </Row>
-      </HomepageContainer>
-      <HomepageContainer fluid>
-      <Row>
-        <Col xs={1}/>
-        <Col xs={10}>
-          <Image src="images/snow.jpeg"/>
-          <h2>Landscape</h2>
-        </Col> 
-        <Col xs={1}/>
-      </Row>
-      </HomepageContainer>
+        <Container fluid style={{ padding: 0 }}>
+          <HeroImage src="images/1.jpeg" />
+        </Container>
+        <HomepageContainer fluid>
+          {isMobile ? (
+            <>
+              <Col><StillLifeImage src="images/violin1.jpg" /><ImageTitle>Still Life</ImageTitle></Col>
+              <Col><PortraitImage src="images/portrait1.jpeg" /><ImageTitle>Portrait</ImageTitle></Col>
+            </>
+          ) : (<Row>
+            <Col xs={1} />
+            <Col><StillLifeImage src="images/violin1.jpg" /><ImageTitle>Still Life</ImageTitle></Col>
+            <Col><PortraitImage src="images/portrait1.jpeg" /><ImageTitle>Portrait</ImageTitle></Col>
+            <Col xs={1} />
+          </Row>)}
+        </HomepageContainer>
+        <HomepageContainer fluid>
+          {isMobile ? (<Col>
+            <BoxShadowImage src="images/snow.jpeg" style={{ display: 'flex', margin: 'auto', maxWidth: '100%' }} />
+            <ImageTitle>Landscape</ImageTitle>
+          </Col>) : (<Row>
+            <Col>
+              <BoxShadowImage src="images/snow.jpeg" style={{ display: 'flex', margin: 'auto', maxWidth: '100%' }} />
+              <ImageTitle>Landscape</ImageTitle>
+            </Col>
+          </Row>)}
+        </HomepageContainer>
+        <HomepageContainer fluid>
+          <Col style={{ position: 'relative', marginBottom: '142px' }}>
+            <BoxShadowImage src="images/marts.jpeg" style={{ display: 'flex', margin: 'auto', maxWidth: '100%' }} />
+            <AboutBox>
+              <ImageTitle>About</ImageTitle>
+              <div style={{ width: '40px', height: '2px', backgroundColor: 'black', margin: 'auto' }} />
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </AboutBox>
+          </Col>
+        </HomepageContainer>
+        <HomepageContainer fluid style={{ backgroundColor: 'rgba(193, 195, 201, 0.3)', padding: '16px' }}>
+          <Col style={{ position: 'relative' }}>
+            <ImageTitle>Contact</ImageTitle>
+            <div style={{ width: '40px', height: '2px', backgroundColor: 'black', margin: 'auto' }} />
+          </Col>
+        </HomepageContainer>
       </Content>
       <style jsx global>{`
         html,
@@ -208,6 +271,7 @@ export default function Home() {
 
         * {
           box-sizing: border-box;
+          letterSpacing: -0.1px;
         }
       `}</style>
     </>
