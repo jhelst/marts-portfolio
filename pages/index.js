@@ -43,6 +43,7 @@ const Nav = styled.nav`
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    color: #fff;
   }
   @media ${mq.tabletMin} {
   padding: 0 40px;
@@ -64,13 +65,16 @@ const Nav = styled.nav`
     padding: 8px 0;
   }
   & a {
-  color: #323232;
+  color: #fff;
   text-shadow: 1px 1px 1px #393939ad;
   text-decoration: none;
   transition: color 250ms linear;
   &:hover {
     color: #767676;
   }
+   & a.down {
+     color: #323232;
+   }
   }
  `
 
@@ -208,7 +212,7 @@ export default function Home() {
       </Head>
       <Navigation />
       <Content>
-        <Container fluid style={{ padding: 0 }}>
+        <Container fluid>
           <HeroImage src="images/1.jpeg" />
         </Container>
         <HomepageContainer fluid>
@@ -241,7 +245,7 @@ export default function Home() {
             <AboutBox>
               <ImageTitle>About</ImageTitle>
               <div style={{ width: '40px', height: '2px', backgroundColor: 'black', margin: 'auto' }} />
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p style={{marginTop: '16px'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </AboutBox>
           </Col>
         </HomepageContainer>
