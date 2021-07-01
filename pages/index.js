@@ -110,8 +110,19 @@ export default function Home() {
       </Head>
       <Navigation />
       <Content>
-        <Container fluid css={css`padding: 0`}>
+        <Container fluid css={css`padding: 0; position: relative;`}>
           <HeroImage src="images/1.jpeg" />
+          <h1 css={css`{
+            position: absolute;
+            bottom: 0;
+            right: 8px;
+            color: #ffffff42;
+            @media (min-width: 1024px){
+              bottom: 64px;
+              right: 64px;
+            }
+            }`
+          }>Martina</h1>
         </Container>
         <HomepageContainer fluid id="portfolio">
           {isMobile ? (
