@@ -1,6 +1,4 @@
 
-import { makeStyles } from '@material-ui/core/styles';
-
 export const useStyles = makeStyles(() => ({
     hero: {
       backgroundImage: 'linear-gradient(66deg,rgba(0,0,0,.85),rgba(0,0,0,.7) 25%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.1) 75%,rgba(0,0,0,0)),url(/images/1.jpeg)',

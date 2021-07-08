@@ -4,16 +4,18 @@ import Link from 'next/link'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled, { css } from 'styled-components'
 import { Col, Container, Image, Row } from 'react-bootstrap'
-import { Box, useMediaQuery } from '@material-ui/core'
 import { Navigation } from '../components/navigation';
 import { GlobalStyles } from '../components/global-styles';
-
-
-
+import { useMediaQuery } from '../hooks/use-media-query';
 
 const Content = styled('div')`
 `
 
+const Column = styled(Col)`
+display: flex;
+flex-direction: column;
+align-items: center;
+`
 
 const boxShadowStyle = css`
 cursor: pointer;
@@ -40,16 +42,14 @@ height: 100%;
 const StillLifeImage = styled('img')`
 ${boxShadowStyle};
 ${imgHoverStyles};
-height: 100%;
-width: 100%;
+max-width: 100%;
 `
 
 
 const PortraitImage = styled('img')`
 ${boxShadowStyle};
 ${imgHoverStyles};
-height: 100%;
-width: 100%;
+max-width: 100%;
 margin-top: 16px;
 @media (min-width: 1024px){
   margin-top: 0;
@@ -74,7 +74,7 @@ margin-top: 24px;
 
 const ImageTitle = styled('h2')`
 text-align: center;
-margin-top: 6px;
+margin-top: 16px;
 font-size: 16px;
 
 @media (min-width: 1024px){
@@ -83,12 +83,12 @@ font-size: 16px;
 `
 
 const AboutBox = styled('div')`
-position: absolute;
-top: 70%; background-color: white; 
+margin: auto;
+margin-top: -100px;
+background-color: white; 
 width: 80%;
-left: 10%;
 padding: 8px;
-border-radius: 4px;
+border-radius: 6px;
 box-shadow: 2px 2px 5px #0000001a;
 `
 
@@ -98,8 +98,9 @@ export default function Home() {
     <>
       <Head>
         <title>Marts Portfolio</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,100;1,300&display=swap" rel="stylesheet"/> 
         <script src="https://unpkg.com/react/umd/react.production.min.js" crossOrigin="true"></script>
         <script
           src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
@@ -110,38 +111,27 @@ export default function Home() {
       </Head>
       <Navigation />
       <Content>
-        <Container fluid css={css`padding: 0; position: relative;`}>
-          <HeroImage src="images/1.jpeg" />
-          <h1 css={css`{
-            position: absolute;
-            bottom: 0;
-            right: 8px;
-            color: #ffffff42;
-            @media (min-width: 1024px){
-              bottom: 64px;
-              right: 64px;
-            }
-            }`
-          }>Martina</h1>
+        <Container fluid css={css`padding: 0;`}>
+          <HeroImage src="images/portraits/3.png" />
         </Container>
         <HomepageContainer fluid id="portfolio">
           {isMobile ? (
             <>
-              <Col><Link href="/portfolio/still-life"><a><StillLifeImage src="images/violin1.jpg" /><ImageTitle>Still Life</ImageTitle></a></Link></Col>
-              <Col><Link href="/portfolio/portrait"><a><PortraitImage src="images/portrait1.jpeg" /><ImageTitle>Portrait</ImageTitle></a></Link></Col>
+              <Column><Link href="/portfolio/still-life"><a><StillLifeImage src="images/still-life/1.png"  /><ImageTitle>Still Life</ImageTitle></a></Link></Column>
+              <Column><Link href="/portfolio/portrait"><a><PortraitImage src="images/portraits/1.png" /><ImageTitle>Portrait</ImageTitle></a></Link></Column>
             </>
           ) : (<Row>
-            {/* <Col xs={1} /> */}
-            <Col><Link href="/portfolio/still-life"><a><StillLifeImage src="images/violin1.jpg" /><ImageTitle>Still Life</ImageTitle></a></Link></Col>
-            <Col><Link href="/portfolio/portrait"><a><PortraitImage src="images/portrait1.jpeg" /><ImageTitle>Portrait</ImageTitle></a></Link></Col>
-            {/* <Col xs={1} /> */}
+            {/* <Column xs={1} /> */}
+            <Column><Link href="/portfolio/still-life"><a><StillLifeImage src="images/still-life/1.png" /><ImageTitle>Still Life</ImageTitle></a></Link></Column>
+            <Column><Link href="/portfolio/portrait"><a><PortraitImage src="images/portraits/1.png" /><ImageTitle>Portrait</ImageTitle></a></Link></Column>
+            {/* <Column xs={1} /> */}
           </Row>)}
         </HomepageContainer>
         <HomepageContainer fluid>
           {isMobile ? (<Col>
             <Link href="/portfolio/landscape">
               <a>
-            <BoxShadowImage src="images/snow.jpeg" style={{ display: 'flex', margin: 'auto', maxWidth: '100%' }} />
+            <BoxShadowImage src="images/landscape/2.png" style={{ display: 'flex', margin: 'auto', maxWidth: '100%' }} />
             <ImageTitle>Landscape</ImageTitle>
             </a>
             </Link>
@@ -149,7 +139,7 @@ export default function Home() {
             <Col>
             <Link href="/portfolio/landscape">
               <a>
-                <BoxShadowImage src="images/snow.jpeg" style={{ display: 'flex', margin: 'auto', maxWidth: '100%' }} />
+                <BoxShadowImage src="images/landscape/2.png" style={{ display: 'flex', margin: 'auto', maxWidth: '100%' }} />
                 <ImageTitle>Landscape</ImageTitle>
               </a>
               </Link>
@@ -157,28 +147,24 @@ export default function Home() {
           </Row>)}
         </HomepageContainer>
         <HomepageContainer fluid id="about">
-          <Col css={css`
-            position: relative;
-            margin-bottom: 142px;
-            @media (min-width: 1024px){
-              max-height: 800px;
-            }
-          `}>
-            <BoxShadowImage src="images/marts.jpeg"
+          <Column>
+            <BoxShadowImage src="images/portraits/2.png"
             css={css`
               display: flex;
               margin: auto;
               max-width: 100%;
-              @media (min-width: 1024px){
-                max-height: 800px;
-              }
+              z-index: -1;
             `} />
             <AboutBox>
-              <ImageTitle>About</ImageTitle>
+              <ImageTitle>Sobre Mí</ImageTitle>
               <div style={{ width: '40px', height: '2px', backgroundColor: 'black', margin: 'auto' }} />
-              <p style={{marginTop: '16px'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <div css={css`padding: 24px;`}>
+              <p style={{marginTop: '16px'}}>Muchos intereses y actividades han atravesado mi vida. Sin embargo, el amor por la naturaleza y la fotografía siempre estuvieron presentes. No hay nada que me genere mayor paz que estar sumerjida en un paisaje natural, y si es con una cámara con la que pueda capturarlo, mejor.</p>
+              <p>A la hora de fotografiar me gusta que todo sea lo más natural posible. Me cuesta dirigir a las personas para fotografiarlas y también encuentro difícil generar un entorno artificial para capturar, y eso creo que se muestra mucho en mis imágenes. Sin embargo, no lo veo como una falencia, sino como una de las tantas maneras de expresar este arte. </p>
+              <p>Mi camino en la fotografía es muy largo, con mucha práctica y poco estudio formal, pero puedo decir que estoy muy orgullosa de poder ver mi crecimiento a lo largo de los años, lo cual me motiva a compartirlo con el mundo. Diciendo esto, les entrego una parte de mí -mi arte- esperando que puedan disfrutarlo tanto como yo disfruto hacerlo.</p>
+              </div>
             </AboutBox>
-          </Col>
+          </Column>
         </HomepageContainer>
         <HomepageContainer fluid style={{ backgroundColor: 'rgba(193, 195, 201, 0.3)', padding: '16px' }}>
           <Col style={{ position: 'relative' }}>

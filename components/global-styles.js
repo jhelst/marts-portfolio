@@ -4,11 +4,10 @@ body {
   background-color: #f4f4f4;
   padding: 0;
   margin: 0;
-  font-family: 'Limelight', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
-    width: 100%;
-    height: 100%;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 300;
+  width: 100%;
+  height: 100%;
 }
 #__next {
   width: 100%;
@@ -19,10 +18,16 @@ body {
   box-sizing: border-box;
   letterSpacing: -0.1px;
 }
-a, a:hover, a:active, a:visited {
-  color: #111;
-}
-a:hover {
+a {
+  color: #111 !important;
   text-decoration: underline;
 }
+p {
+  font-family: 'Roboto Mono', monospace;
+  font-style: italic;
+  letter-spacing: 0.25px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 `}</style>)

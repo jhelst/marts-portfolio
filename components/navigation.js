@@ -63,16 +63,12 @@ const Nav = styled.nav`
     padding: 8px 0;
   }
   & a {
-  color: #fff;
   text-shadow: 1px 1px 1px #393939ad;
   text-decoration: none;
-  transition: color 250ms linear;
+  transition: all 250ms linear;
   &:hover {
-    color: #767676;
+    color: #434343 !important;
   }
-   & a.down {
-     color: #323232;
-   }
   }
  `
 

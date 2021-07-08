@@ -4,13 +4,14 @@ import { css} from 'styled-components'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Image, Row } from 'react-bootstrap';
-import { Box, useMediaQuery } from '@material-ui/core'
+ 
 import { Navigation } from '../../components/navigation';
 import { PortfolioTitle } from '../../components/copy';
 import { GlobalStyles } from '../../components/global-styles';
+import { useMediaQuery } from '../../hooks/use-media-query';
 const gallery = [
     {
-      img: '/images/flower1.jpeg',
+      img: '/images/portraits/1.png',
       title: 'foo',
       cols: 1,
       type: 'img',
@@ -23,29 +24,23 @@ const gallery = [
       type: 'text',
     },
   {
-    img: '/images/city.jpeg',
+    img: '/images/portraits/2.png',
     title: 'foo',
     cols: 1,
     type: 'img',
   },
   {
-    img: '/images/flower2.jpeg',
+    img: '/images/portraits/3.png',
     title: 'foo',
     cols: 1,
     type: 'img',
   },
   {
-    img: '/images/snow.jpeg',
+    img: '/images/portraits/4.png',
     title: 'foo',
     cols: 1,
     type: 'img',
-  },
-  {
-    img: '/images/violin1.jpg',
-    title: 'foo',
-    cols: 1,
-    type: 'img',
-  },
+  }
   ]
 
   export default function Portrait() {
