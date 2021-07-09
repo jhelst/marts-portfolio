@@ -4,7 +4,7 @@ import { css} from 'styled-components'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Image, Row } from 'react-bootstrap';
- 
+import { Column, PortfolioImg } from '../../components/components';
 import { Navigation } from '../../components/navigation';
 import { PortfolioTitle } from '../../components/copy';
 import { GlobalStyles } from '../../components/global-styles';
@@ -55,11 +55,11 @@ const gallery = [
     <Container fluid>
       <Row noGutters>
     {gallery.map((tile) => (
-      <Col key={tile.title} xs={12} md={4}>
-        {tile.type === 'img' ? (<img src={tile.img} css={css`width: 100%; height: 100%;`}/>): (<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',height: '100%'}}>
+      <Column key={tile.title} xs={12} md={6}>
+        {tile.type === 'img' ? (<PortfolioImg src={tile.img} />): (<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'Column',height: '100%'}}>
         <PortfolioTitle>{tile.title}</PortfolioTitle>
         </div>)}
-      </Col>
+      </Column>
     ))}
     </Row>
   </Container>

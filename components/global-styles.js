@@ -22,6 +22,15 @@ a {
   color: #111 !important;
   text-decoration: underline;
 }
+
+nav a {
+  color: #cdcdcd !important;
+  text-decoration: underline;
+}
+
+nav.down a {
+  color: #111 !important;
+}
 p {
   font-family: 'Roboto Mono', monospace;
   font-style: italic;

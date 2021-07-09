@@ -6,15 +6,10 @@ import styled, { css } from 'styled-components'
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Navigation } from '../components/navigation';
 import { GlobalStyles } from '../components/global-styles';
+import { Column } from '../components/components';
 import { useMediaQuery } from '../hooks/use-media-query';
 
 const Content = styled('div')`
-`
-
-const Column = styled(Col)`
-display: flex;
-flex-direction: column;
-align-items: center;
 `
 
 const boxShadowStyle = css`
