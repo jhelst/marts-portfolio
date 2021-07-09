@@ -5,7 +5,7 @@ import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Image, Row } from 'react-bootstrap';
  
-import { Column, PortfolioImg } from '../components/components';
+import { Column, PortfolioImg } from '../../components/components';
 import { Navigation } from '../../components/navigation';
 import { PortfolioTitle } from '../../components/copy';
 import { GlobalStyles } from '../../components/global-styles';
