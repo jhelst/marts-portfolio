@@ -22,7 +22,8 @@ const Nav = styled.nav`
     position: fixed;
     left: 0;
     padding: 20px;
-    width: 370px;
+    width: 395px;
+    max-width: 100%;
     height: inherit;
     z-index: -1;
     opacity: 0;
@@ -56,7 +57,6 @@ const Nav = styled.nav`
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 100px;
   }
   & li {
     display: flex;
@@ -73,7 +73,7 @@ const Nav = styled.nav`
  `
 
 
-export const Navigation = () => {
+export const Navigation = ({meta}) => {
 
   const [scrollDirection, setScrollDirection] = React.useState('top')
 
@@ -104,16 +104,16 @@ export const Navigation = () => {
         <div className="bg" />
         <ul>
           <li>
-            <a href="/#top">Home</a>
+            <a href="/#top">{meta.home}</a>
           </li>
           <li>
-            <a href="/#portfolio">Portfolio</a>
+            <a href="/#portfolio">{meta.portfolio}</a>
           </li>
           <li>
-            <a href="/#about">About</a>
+            <a href="/#about">{meta.about}</a>
           </li>
           <li>
-            <a href="/#contact">Contact</a>
+            <a href="/#contact">{meta.contact}</a>
           </li>
         </ul>
       </Container>

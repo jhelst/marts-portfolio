@@ -1,15 +1,13 @@
 
 import * as React from 'react'
-import { css} from 'styled-components'
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Image, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
  
-import { Navigation } from '../../components/navigation';
 import { PortfolioTitle } from '../../components/copy';
 import { GlobalStyles } from '../../components/global-styles';
 import { Column, PortfolioImg } from '../../components/components'
-import { useMediaQuery } from '../../hooks/use-media-query';
+import { LanguageContext } from '../../context/language-context';
 const gallery = [
     {
       img: '/images/still-life/1.png',
@@ -19,7 +17,7 @@ const gallery = [
     },
     {
       img: null,
-      title: 'Still Life',
+      title: 'stillLife',
       subtitle: '',
       cols: 1,
       type: 'text',
@@ -33,20 +31,20 @@ const gallery = [
   ]
 
   export default function StillLife() {
-    const isMobile = useMediaQuery('(max-width: 767px)')
+    const {translations: l} = React.useContext(LanguageContext)
+    
     return (
       <>
           <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" />
     </Head>
-            <Navigation />
     <Container fluid>
       <Row noGutters>
     {gallery.map((tile) => (
       <Column key={tile.title} xs={12} md={4}>
         {tile.type === 'img' ? (<PortfolioImg src={tile.img} />): (<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',height: '100%'}}>
-          <PortfolioTitle>{tile.title}</PortfolioTitle>
+          <PortfolioTitle>{l[tile.title]}</PortfolioTitle>
         </div>)}
       </Column>
     ))}
