@@ -10,6 +10,7 @@ import { Envelope } from '../components/icons/envelope';
 
 import { LanguageContext } from '../context/language-context';
 import { GlobalStyles } from '../components/global-styles';
+import { Instagram } from '../components/icons/instagram';
 
 const Content = styled('div')`
 `
@@ -167,11 +168,12 @@ const Home = ({foo}) =>  {
           </Column>
         </HomepageContainer>
         <HomepageContainer fluid style={{ backgroundColor: 'rgba(193, 195, 201, 0.3)', padding: '16px' }}>
-          <Col style={{ position: 'relative' }}>
+          <Col css={css`position: relative; width: 300px; max-width: 100%; margin: auto; `}>
             <ImageTitle>{l.contact}</ImageTitle>
             <div style={{ width: '40px', height: '2px', backgroundColor: 'black', margin: 'auto', marginBottom: '48px' }} />
-            <Row css={css`justify-content: center; margin-bottom: 16px; font-size: 18px; `}><span>Marts</span></Row>
-            <Row css={css`justify-content: center; margin-bottom: 48px;`}><div css={css`height: 32px; width: 32px;`}><Envelope /></div><a href="mailto:***@gmail.com" css={css`margin-left: 16px;`}>***@gmail.com</a></Row>
+            <Row css={css`justify-content: center; margin-bottom: 32px; font-size: 18px; `}><span>Marts</span></Row>
+            <Row css={css`justify-content: center; margin-bottom: 16px;`}><div css={css`height: 32px; width: 32px;`}><Envelope /></div><a href="mailto:mdellazoppa42@gmail.com" css={css`margin-left: 16px;`}>mdellazoppa42@gmail.com</a></Row>
+            <Row css={css`justify-content: center; margin-bottom: 48px;`}><div css={css`height: 32px; width: 32px;`}><Instagram /></div><a href="https://www.instagram.com/martarrayas/" target="_blank" css={css`margin-left: 16px;`}>@martarrayas</a></Row>
           </Col>
         </HomepageContainer>
       </Content>

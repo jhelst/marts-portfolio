@@ -17,7 +17,7 @@ export const lang = [{
     portfolio: "Portafolio",
     about: "Sobre Mí",
     contact: "Contacto",
-    stillLife: "Still-Life",
+    stillLife: "Naturaleza Muerta",
     portrait: "Retrato",
     landscape: "Paisaje",
     aboutMe: "Sobre Mí",
